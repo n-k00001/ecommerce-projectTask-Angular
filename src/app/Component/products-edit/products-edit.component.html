@@ -1,0 +1,38 @@
+
+<div class="container-fluid p-5 ">
+    <div class="m-2">
+        <label for="select">Catogries</label>
+        <select  (change)="filterProducts(selectedValue.value)"#selectedValue>
+            <option value="0">All</option>
+            <option *ngFor="let category of store.catogryList" [value]="category.id">{{category.Name}}</option>
+        </select>
+    </div>
+    <div  *ngFor="let product of this.filteredProducts" >
+        <div class="card m-2 " (dblclick)="productDetails(product.id)" productCard [ngClass]="{'yellow':product.Quantity===1}" style="width: 18rem; float: left;">
+            <img style="width: 100%; height: 250px;" *ngIf="!product.isPurchased" [src]="product.Img" class="" alt="Store Logo">
+            <div *ngIf="product.isPurchased">Thanks for purchasing from our Store {{clientName}}!</div>
+            <div class="card-body">
+              <h5 class="card-title">{{product.Name}}</h5>
+              <p class="card-text">{{product.Price}}$</p>              
+            </div>
+            <td [ngSwitch]="product.Quantity">
+                <ng-container *ngSwitchCase="1">
+                  <span>Last one item</span>
+                </ng-container>
+                <ng-container *ngSwitchCase="2">
+                  <span>Last two items</span>
+                </ng-container>
+                <ng-container *ngSwitchCase="0">
+                  <span>Out of stock</span>
+                </ng-container>
+                <ng-container *ngSwitchDefault>
+                    <p class="card-text">In stock: {{product.Quantity}}</p>                  
+                </ng-container>
+            </td> 
+            <div>
+                <button class="btn btn-primary m-2" [disabled]="product.Quantity==0" (click)="editpage(product.id)">Update</button>
+                <button class="btn btn-primary" [disabled]="product.Quantity==0" (click)="deleteProduct(product.id)" >Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

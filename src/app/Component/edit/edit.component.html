@@ -1,0 +1,26 @@
+<p>edit works!</p>
+
+<form (ngSubmit)="updateProduct()" #productForm="ngForm">    
+    <div class="m-2">
+        <label style="margin-right: 2rem;" for="name">Name:</label>
+        <input id="name" type="text" name="name" [(ngModel)]="product.Name" required>
+    </div>
+    <div class="m-2">
+        <label style="margin-right: 2rem;" for="quantity">Quantity:</label>
+        <input id="quantity" type="number" name="quantity" [(ngModel)]="product.Quantity" required>
+    </div>  
+    <div class="m-2">
+        <label style="margin-right: 2rem;" for="price">Price:</label>
+        <input id="price" type="number" name="price" [(ngModel)]="product.Price" required>
+    </div>
+    <div class="m-2">
+        <label style="margin-right: 2rem;" for="categoryId">Category:</label>
+        <input id="categoryId" type="number" name="categoryId" [(ngModel)]="product.CayogryId" required>
+    </div>
+    <div class="m-2">
+        <label style="margin-right: 2rem;" for="img">Image URL:</label>
+        <input id="img" type="text" name="img" [(ngModel)]="product.Img" required>
+    </div>  
+    <button class="btn btn-success " style="margin-left: 9rem; margin-top: 4rem;" type="submit" [disabled]="!productForm.valid">Update</button>
+</form>
+  

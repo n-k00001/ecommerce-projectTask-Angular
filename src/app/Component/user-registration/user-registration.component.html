@@ -1,0 +1,172 @@
+<p>user-registration works!</p>
+
+<!-- <button (click)="addUser()">register</button> -->
+
+
+<!-- <form [formGroup]="registrationForm" (ngSubmit)="addUser()">
+  <div class="m-2">
+    <label style="margin-right: 2rem;" for="name">Full Name:</label>
+    <input type="text" id="name" formControlName="name">
+    <div *ngIf="registrationForm.get('name')?.invalid && (registrationForm.get('name')?.dirty || registrationForm.get('name')?.touched)">
+      <div *ngIf="registrationForm.get('name')?.errors?.['required']">Full Name is required.</div>
+      <div *ngIf="registrationForm.get('name')?.errors?.['minlength']">Full Name must be at least 5 characters long.</div>
+    </div>
+  </div>
+  
+  <div class="m-2">
+    <label style="margin-right: 2rem;" for="email">Email:</label>
+    <input type="email" id="email" formControlName="email">
+    <div *ngIf="registrationForm.get('email')?.invalid && (registrationForm.get('email')?.dirty || registrationForm.get('email')?.touched)">
+      <div *ngIf="registrationForm.get('email')?.errors?.['required']">Email is required.</div>
+      <div *ngIf="registrationForm.get('email')?.errors?.['email']">Please enter a valid email address.</div>
+    </div>
+  </div>
+  
+  <div class="m-2">
+    <label style="margin-right: 2rem;" for="phoneNumber">Phone Number:</label>
+    <input type="text" id="phoneNumber" formControlName="phoneNumber">
+    <div *ngIf="registrationForm.get('phoneNumber')?.invalid && (registrationForm.get('phoneNumber')?.dirty || registrationForm.get('phoneNumber')?.touched)">
+      <div *ngIf="registrationForm.get('phoneNumber')?.errors?.['required']">Mobile Number is required.</div>
+      <div *ngIf="registrationForm.get('phoneNumber')?.errors?.['pattern']">Please enter a valid mobile number.</div>
+    </div>
+  </div>
+  
+  <div class="m-2">
+    <label style="margin-right: 2rem;" for="city">City:</label>
+    <input type="text" id="city" formControlName="address.city">
+    <div *ngIf="registrationForm.get('address.city')?.invalid && (registrationForm.get('address.city')?.dirty || registrationForm.get('address.city')?.touched)">
+      <div *ngIf="registrationForm.get('address.city')?.errors?.['required']">City is required.</div>
+    </div>
+  </div>
+  
+  <div class="m-2">
+    <label style="margin-right: 2rem;" for="postalCode">Postal Code:</label>
+    <input type="text" id="postalCode" formControlName="address.postalCode">
+    <div *ngIf="registrationForm.get('address.postalCode')?.invalid && (registrationForm.get('address.postalCode')?.dirty || registrationForm.get('address.postalCode')?.touched)">
+      <div *ngIf="registrationForm.get('address.postalCode')?.errors?.['required']">Postal Code is required.</div>
+    </div>
+  </div>
+  
+  <div class="m-2">
+    <label style="margin-right: 2rem;" for="street">Street:</label>
+    <input type="text" id="street" formControlName="address.street">
+    <div *ngIf="registrationForm.get('address.street')?.invalid && (registrationForm.get('address.street')?.dirty || registrationForm.get('address.street')?.touched)">
+      <div *ngIf="registrationForm.get('address.street')?.errors?.['required']">Street is required.</div>
+    </div>
+  </div>
+  
+  <div class="m-2">
+    <label style="margin-right: 2rem;" for="password">Password:</label>
+    <input type="password" id="password" formControlName="password">
+    <div *ngIf="registrationForm.get('password')?.invalid && (registrationForm.get('password')?.dirty || registrationForm.get('password')?.touched)">
+      <div *ngIf="registrationForm.get('password')?.errors?.['required']">Password is required.</div>
+      <div *ngIf="registrationForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters long.</div>
+    </div>
+  </div>
+  
+  <div class="m-2">
+    <label style="margin-right: 2rem;" for="confirmPassword">Confirm Password:</label>
+    <input type="password" id="confirmPassword" formControlName="confirmPassword">
+  </div>
+  
+  <button style="margin-top: 2rem; margin-left: 2rem;" class="btn btn-info text-white" type="submit" [disabled]="registrationForm.invalid">Register</button>
+</form> -->
+
+<div class="card">
+  <div class="card-header">
+    Sign Up with Reactive
+  </div>
+  <div class="card-body">
+    <form [formGroup]="registrationForm" (ngSubmit)="addUser()" >
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="name">Name:</label>
+        <div class="col-md-8">
+          <input placeholder="Name (required)" class="form-control" type="text" id="name" formControlName="name"
+          [ngClass]="{'is-invalid':(registrationForm.get('name')?.touched||registrationForm.get('name')?.dirty)&&registrationForm.get('name')?.invalid}">
+          <span class="invalid-feedback">
+            <span *ngIf="registrationForm.get('name')?.errors?.['required']">Please enter your first name</span>
+            <span *ngIf="registrationForm.get('name')?.errors?.['minlength']">Please Your first name must be at least 3 characters</span>
+          </span>
+        </div>
+      </div>
+      <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label" for="email">Email</label>
+          <div class="col-md-8">
+            <input placeholder="Email (required)" class="form-control" type="email" id="email" formControlName="email"
+          [ngClass]="{'is-invalid':(registrationForm.get('email')?.touched||registrationForm.get('email')?.dirty)&&registrationForm.get('email')?.invalid}">            
+            <span class="invalid-feedback">
+              <span *ngIf="registrationForm.get('email')?.errors?.['required']">Please enter your email</span>
+              <span *ngIf="registrationForm.get('email')?.errors?.['email']">Please enter an invalid email</span>
+            </span>
+          </div>
+      </div>
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="phoneNumber">Phone Number</label>
+        <div class="col-md-8">
+          <input placeholder="Phone Number (required)" class="form-control" type="tel" id="phoneNumber" formControlName="phoneNumber"
+          [ngClass]="{'is-invalid':(registrationForm.get('phoneNumber')?.touched||registrationForm.get('phoneNumber')?.dirty)&&registrationForm.get('phoneNumber')?.invalid}">            
+          <span class="invalid-feedback">
+            <span *ngIf="registrationForm.get('phoneNumber')?.errors?.['required']">Please enter your phone number</span>
+            <span *ngIf="registrationForm.get('phoneNumber')?.errors?.['pattern']">phone number must be 11 digit</span>
+          </span>
+        </div>
+      </div>
+      <div formGroupName="address" class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="city">City</label>
+        <div class="col-md-8">
+          <input placeholder="City (required)" class="form-control" type="text" id="city" formControlName="city"
+          [ngClass]="{'is-invalid':(registrationForm.get('city')?.touched||registrationForm.get('city')?.dirty)&&registrationForm.get('city')?.invalid}">            
+          <span class="invalid-feedback">
+            <span *ngIf="registrationForm.get('city')?.errors?.['required']">Please enter city</span>
+          </span>
+        </div>
+      </div>
+      <div formGroupName="address" class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="street">Street</label>
+        <div class="col-md-8">
+          <input placeholder="Street (required)" class="form-control" type="text" id="street" formControlName="street"
+          [ngClass]="{'is-invalid':(registrationForm.get('street')?.touched||registrationForm.get('street')?.dirty)&&registrationForm.get('street')?.invalid}">            
+          <span class="invalid-feedback">
+            <span *ngIf="registrationForm.get('street')?.errors?.['required']">Please enter street</span>
+          </span>
+        </div>
+      </div>
+      <div formGroupName="address" class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="postalCode">Postal Code</label>
+        <div class="col-md-8">
+          <input placeholder="postal Code (required)" class="form-control" type="number" id="postalCode" formControlName="postalCode"
+          [ngClass]="{'is-invalid':(registrationForm.get('postalCode')?.touched||registrationForm.get('postalCode')?.dirty)&&registrationForm.get('postalCode')?.invalid}">            
+          <span class="invalid-feedback">
+            <span *ngIf="registrationForm.get('postalCode')?.errors?.['required']">Please enter postal code</span>
+          </span>
+        </div>
+      </div>
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"  for="password">Password</label>
+        <div class="col-md-8">
+          <input type="password" placeholder="password" id="password" class="form-control" formControlName="password"
+          [ngClass]="{'is-invalid':(registrationForm.get('password')?.touched||registrationForm.get('password')?.dirty)&&registrationForm.get('password')?.invalid}">            
+          <span class="invalid-feedback">
+            <span *ngIf="registrationForm.get('password')?.errors?.['required']">Please enter passsword</span>
+            <span *ngIf="registrationForm.get('passsword')?.errors?.['minlength']">password must be more than length 5</span>
+          </span>
+        </div>
+      </div>
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="confirmPassword">Confirm Password</label>
+        <div class="col-md-8">
+          <input type="password" placeholder="confirm password" class="form-control" id="confirmPassword" formControlName="confirmPassword"
+          [ngClass]="{'is-invalid':(registrationForm.get('confirmPassword')?.touched||registrationForm.get('confirmPassword')?.dirty)&&registrationForm.get('confirmPassword')?.invalid}">            
+          <span class="invalid-feedback">
+            <span *ngIf="registrationForm.get('confirmPassword')?.errors?.['required']">Please confirm password</span>
+            <span *ngIf="registrationForm.errors?.['passwordMismatch']">two password doen't match</span>
+          </span>
+        </div>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-success" [disabled]="registrationForm.invalid">Submit</button>
+    </form>
+
+
+  </div>
+</div>

@@ -1,0 +1,45 @@
+
+
+<!-- product-form.component.html -->
+<!-- <form  (ngSubmit)="addProduct()" #productForm="ngForm">
+    <label for="category">Category:</label>
+    <select id="category" name="category"   required>
+        <option *ngFor="let category of categories" [value]="category.id">{{ category.Name }}</option>
+    </select>
+    <div style="margin-top: 2rem;">
+        <label for="name">Name:</label>
+        <input id="name" type="text" name="name"  required>  
+    </div>
+    
+    <button style="margin-top: 2rem;" type="submit" [disabled]="!productForm.valid">Add Product</button>
+</form> -->
+  
+
+<form [formGroup]="productForm" (ngSubmit)="addProduct()">
+    <div>
+      <label for="name">Name:</label>
+      <input class="form-control" type="text" id="name" formControlName="Name" required>
+    </div>
+    <div>
+      <label for="categoryId">Category ID:</label>
+      <select class="form-select" id="CayogryId" name="CayogryId" formControlName="CayogryId" required #selectedValue>
+        <option *ngFor="let category of categories" [value]="category.id">{{ category.Name }}</option>
+      </select>
+      <!-- <input type="number" id="categoryId" formControlName="CayogryId" required> -->
+    </div>
+    <div>
+      <label for="img">ImageUrl:</label>
+      <input class="form-control" type="text" id="img" formControlName="Img"required>
+    </div>
+    <div>
+      <label for="price">Price:</label>
+      <input class="form-control" type="number" id="price" formControlName="Price"required>
+    </div>
+    <div>
+      <label for="quantity">Quantity:</label>
+      <input class="form-control" type="number" id="quantity" formControlName="Quantity"required>
+    </div>
+    <button class="btn btn-outline-success" style="margin-top: 2rem;" type="submit" [disabled]="!productForm.valid">Add Product</button>
+
+</form>
+  
